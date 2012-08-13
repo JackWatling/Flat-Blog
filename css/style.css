@@ -110,7 +110,7 @@ article.post header a{
 	color: #a2a2a2;
 }
 
-article.post header a.info{
+article.post header .info{
 	color: #a2a2a2;
 	font-size: 0.875em;
 	line-height: 20px;
