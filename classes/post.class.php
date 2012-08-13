@@ -95,4 +95,18 @@ class Post{
 		return '<p>' . str_replace( '\n' , '</p><p>', $content) . '</p>';
 	}
 
+	//Links
+	public function get_permalink(){
+		return 'post.php?id=' . $this->get_id();
+	}
+
+	//Navigation
+	public function next_post(){
+		return $this->get_id() + 1 <= count( Post::$posts ) ? '<a class="right" href="post.php?id=' . ($this->get_id() + 1) . '">Next</a>' : '';
+	}
+
+	public function prev_post(){
+		return $this->get_id() - 1 > 0 ? '<a class="left" href="post.php?id=' . ($this->get_id() - 1) . '">Prev</a>' : '';
+	}
+
 }

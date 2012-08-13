@@ -12,4 +12,8 @@ class Flat{
 		return Post::$posts;
 	}
 
+	public function get_post_by_id( $id ){
+		return Post::$posts[ count( Post::$posts ) - $id ];
+	}
+
 }

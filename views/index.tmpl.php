@@ -16,7 +16,7 @@ foreach ($flat->get_posts() as $key => $post) {
 		</section>
 
 		<section class="meta clear">
-			<a href="#" class="right">Read More</a>
+			<a href="' . $post->get_permalink() . '" class="right">Read More</a>
 		</section>
 		
 	</article>';
