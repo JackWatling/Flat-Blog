@@ -1,0 +1,179 @@
+body{
+	background: #e5e5e5;
+}
+
+.wrapper{
+	width: 960px;
+	margin: 0 auto;
+}
+
+.right {
+	float: right;
+}
+
+.left{
+	float: left;
+}
+
+.clear::after,
+.wrapper::after{
+	content: '';
+	display: block;
+	clear: both;
+}
+
+/*Header*/
+header.main{
+	margin-top: 15px;
+}
+
+/*Header - Title*/
+header.main h1{
+	font-family: 'RobotoThin';
+	color: #919191;
+	font-size: 3em;
+	font-weight: normal;
+	margin: 0;
+	padding: 0;
+	float: left;
+	text-shadow: 1px 1px 0 #00bdf4;
+}
+
+header.main h1 a{
+	color: #919191;
+	text-decoration: none;
+}
+
+header.main h1 a:hover{
+	color: #00bdf4;
+	text-shadow: 1px 1px 0 #919191;
+}
+
+/*Header - Navigation*/
+header.main nav{
+	float: right;
+}
+
+header.main nav ul{
+	font-family: 'RobotoLight';
+	list-style: none;
+	margin: 0;
+}
+
+header.main nav ul li{
+	display: inline;
+	float: left;
+	padding: 0 10px;
+	line-height: 55px;
+}
+
+header.main nav ul li:last-child{
+	padding-right: 0;
+}
+
+header.main nav a{
+	text-decoration: none;
+	color: #919191;
+}
+
+header.main nav a:hover{
+	color: #00bdf4;
+}
+
+/*Content - Block*/
+.block{
+	font-family: 'RobotoLight';
+	background: #ffffff;
+	padding: 20px;
+	-webkit-border-radius: 3px;
+	-webkit-box-shadow: 0 2px 1px 0px #ccc;
+	margin: 20px 0;
+}
+
+/*Post*/
+article.post{
+	margin-top: 10px;
+}
+
+article.post a{
+	text-decoration: none;
+}
+
+/*Post - Header*/
+article.post header{
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	border-bottom: 2px solid #ededed;
+}
+
+article.post header a{
+	color: #a2a2a2;
+}
+
+article.post header a.info{
+	color: #a2a2a2;
+	font-size: 0.875em;
+	line-height: 20px;
+	float: right;
+}
+
+article.post header a:hover{
+	color: #00bdf4;
+}
+
+article.post header h1{
+	color: #909090;
+	font-weight: normal;
+	float: left;
+	margin: 0;
+}
+
+article.post header h1 a{
+	color: #909090;
+}
+
+/*Post - Content*/
+article.post section.content{
+	color: #a2a2a2;
+}
+
+article.post section.content a{
+	color: #00bdf4;
+}
+
+article.post section.content a:hover{
+	color: #00bdf4;
+	border-bottom: 1px dotted #00bdf4;
+}
+
+article.post section.content p{
+	font-weight: normal;
+	color: #a2a2a2;
+	font-size: 0.9em;
+	margin: 10px 0;
+	line-height: 1.35em;
+}
+
+article.post section.content img{
+	max-width: 920px;
+	display: block;
+	margin: 10px 0;
+}
+
+/*Post - Meta*/
+article.post section.meta{
+	color: #a2a2a2;
+	font-size: 0.875em;
+	border-top: 2px solid #e5e5e5;
+	padding-top: 15px;
+	margin-top: 10px;
+}
+
+article.post section.meta a{
+	color: #a2a2a2;
+}
+
+article.post section.meta a:hover{
+	color: #00bdf4;
+	border: none;
+}
