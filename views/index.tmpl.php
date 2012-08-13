@@ -2,7 +2,7 @@
 
 <?php
 
-foreach ($posts as $key => $post) {
+foreach ($flat->get_posts() as $key => $post) {
 	echo 
 	'<article class="post block">
 

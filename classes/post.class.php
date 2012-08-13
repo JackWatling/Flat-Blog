@@ -2,6 +2,8 @@
 
 class Post{
 
+	public static $posts;
+
 	private $title;
 	private $date;
 	private $author;

@@ -1,12 +1,8 @@
 <?php
 
-require_once 'classes/post.class.php';
+require_once 'classes/flat.class.php';
 
-$posts = glob( 'posts/*.txt' );
-
-foreach ($posts as $key => &$file) {
-	$file = new Post( $file );
-}
+$flat = new Flat();
 
 include 'views/index.tmpl.php';
 
