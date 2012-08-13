@@ -8,7 +8,7 @@ foreach ($flat->get_posts() as $key => $post) {
 
 		<header class="clear">
 			<h1><a href="#">' . $post->get_title() . '</a></h1>
-			<span class="info"><a href="#">' . $post->get_date() . '</a> by <a href="#">' . $post->get_author() . '</a></span>
+			<span class="info"><a href="#">' . $post->get_date() . ' @ ' . $post->get_time() . '</a> by <a href="#">' . $post->get_author() . '</a></span>
 		</header>
 
 		<section class="content">

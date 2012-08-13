@@ -6,27 +6,36 @@ class Post{
 
 	//Static
 	public static function setup(){
-		self::load_posts();
-		self::sort_posts();
+		self::load();
+		self::sort();
+		self::ids();
 	}
 
-	private static function load_posts(){
-		$posts = glob( 'posts/*.txt' );
-		foreach ($posts as $key => &$file) {
+	private static function load(){
+		Post::$posts = glob( 'posts/*.txt' );
+		foreach (Post::$posts as $key => &$file) {
 			$file = new Post( $file );
 		}
-		Post::$posts = $posts;
 	}
 
-	private static function sort_posts(){
+	private static function sort(){
 		usort( Post::$posts, function( $a, $b ){
-			return $b->date - $a->date;
+			return strtotime($b->date . ' ' . $b->time)  - strtotime($a->date . ' ' . $a->time);
 		});
 	}
 
+	private static function ids(){
+		$post_total = count( Post::$posts );
+		foreach (Post::$posts as $key => $post) {
+			$post->set_id( $post_total - $key );
+		}
+	}
+
 	//Dynamic
+	private $id;
 	private $title;
 	private $date;
+	private $time;
 	private $author;
 	private $content;
 
@@ -35,8 +44,18 @@ class Post{
 
 		$this->title = $data->title;
 		$this->date = $this->format_date( $data->date );
+		$this->time = $this->format_time( $data->time );
 		$this->author = $data->author;
 		$this->content = $data->content;
+	}
+
+	//ID
+	public function get_id(){
+		return $this->id;
+	}
+
+	public function set_id( $id ){
+		$this->id = $id;
 	}
 
 	//Title
@@ -44,13 +63,22 @@ class Post{
 		return $this->title;
 	}
 
-	// Date
+	//Date
 	public function get_date(){
 		return $this->date;
 	}
 
 	private function format_date( $date ){
 		return date( 'd/m/Y', strtotime( $date ) );
+	}
+
+	//Time
+	public function get_time(){
+		return $this->time;
+	}
+
+	private function format_time( $time ){
+		return date( 'H:i', strtotime( $time ) );
 	}
 
 	//Author
