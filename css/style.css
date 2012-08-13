@@ -90,6 +90,26 @@ header.main nav a:hover{
 	margin: 20px 0;
 }
 
+.block p{
+	font-weight: normal;
+	color: #a2a2a2;
+	font-size: 0.9em;
+	margin: 10px 0;
+	line-height: 1.35em;
+}
+
+.block a{
+	text-decoration: none;
+}
+
+.block p a{
+	color: #00bdf4;
+}
+
+.block p a:hover{
+	border-bottom: 1px dotted #00bdf4;
+}
+
 /*Post*/
 article.post{
 	margin-top: 10px;
