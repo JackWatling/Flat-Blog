@@ -9,11 +9,10 @@
 <body>
 
 	<header class="main wrapper">
-		<h1><a href="index.html">Flat-Blog</a></h1>
+		<h1><a href="index.php">Flat-Blog</a></h1>
 		<nav>
 			<ul>
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Contact</a></li>
+				<li><a href="index.php">Home</a></li>
 			</ul>
 		</nav>
 	</header>

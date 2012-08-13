@@ -12,7 +12,7 @@ foreach ($flat->get_posts() as $key => $post) {
 		</header>
 
 		<section class="content">
-			' . $post->get_content() . '
+			' . $post->get_excerpt() . '
 		</section>
 
 		<section class="meta clear">

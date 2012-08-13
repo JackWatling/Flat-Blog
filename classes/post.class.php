@@ -95,6 +95,10 @@ class Post{
 		return '<p>' . str_replace( '\n' , '</p><p>', $content) . '</p>';
 	}
 
+	public function get_excerpt(){
+		return $this->replace_newlines( implode( ' ', array_slice( explode( ' ', strip_tags( $this->content ) ), 0, 200 ) ) . '...' );
+	}
+
 	//Links
 	public function get_permalink(){
 		return 'post.php?id=' . $this->get_id();
