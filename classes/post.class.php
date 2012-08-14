@@ -124,7 +124,7 @@ class Post{
 
 			<header class="clear">
 				<h1><a href="#">' . $this->get_title() . '</a></h1>
-				<span class="info"><a href="#">' . $this->get_date() . ' @ ' . $this->get_time() . '</a> by <a href="#">' . $this->get_author() . '</a></span>
+				<span class="info"><a href="#">' . $this->get_date() . ' @ ' . $this->get_time() . '</a> by <a href="search.php?author=' . $this->get_author() . '">' . $this->get_author() . '</a></span>
 			</header>
 
 			<section class="content">
@@ -145,7 +145,7 @@ class Post{
 
 			<header class="clear">
 				<h1><a href="' . $this->get_permalink() . '">' . $this->get_title() . '</a></h1>
-				<span class="info"><a href="#">' . $this->get_date() . ' @ ' . $this->get_time() . '</a> by <a href="#">' . $this->get_author() . '</a></span>
+				<span class="info"><a href="#">' . $this->get_date() . ' @ ' . $this->get_time() . '</a> by <a href="search.php?author=' . $this->get_author() . '">' . $this->get_author() . '</a></span>
 			</header>
 
 			<section class="content">

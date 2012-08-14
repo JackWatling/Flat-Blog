@@ -23,6 +23,14 @@ class Flat{
 		return Post::$posts[ count( Post::$posts ) - $id ];
 	}
 
+	public function filter_by_author( $posts, $author ){
+		foreach ($posts as $key => $post) {
+			if ( strtolower( $post->get_author() ) !== strtolower( $author ) )
+				unset( $posts[ $key ] );
+		}
+		return $posts;
+	}
+
 	// Blog
 	public function get_title(){
 		return $this->config['blog_title'];
