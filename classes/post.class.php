@@ -69,7 +69,7 @@ class Post{
 	}
 
 	private function format_date( $date ){
-		return date( 'd/m/Y', strtotime( $date ) );
+		return date( Flat::$config['post_date_format'], strtotime( $date ) );
 	}
 
 	//Time
@@ -78,7 +78,7 @@ class Post{
 	}
 
 	private function format_time( $time ){
-		return date( 'H:i', strtotime( $time ) );
+		return date( Flat::$config['post_time_format'], strtotime( $time ) );
 	}
 
 	//Author
@@ -126,7 +126,7 @@ class Post{
 		'<article class="post block">
 
 			<header class="clear">
-				<h1><a href="#">' . $this->get_title() . '</a></h1>
+				<h1><a href="' . $this->get_permalink() . '">' . $this->get_title() . '</a></h1>
 				<span class="info"><a href="#">' . $this->get_date() . ' @ ' . $this->get_time() . '</a> by <a href="#">' . $this->get_author() . '</a></span>
 			</header>
 
@@ -135,7 +135,7 @@ class Post{
 			</section>
 
 			<section class="meta clear">
-				<a href="' . $this->get_permalink() . '" class="right">Read More</a>
+				<a href="' . $this->get_permalink() . '" class="right">' . Flat::$config['post_read_more'] . '</a>
 			</section>
 			
 		</article>';

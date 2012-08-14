@@ -4,8 +4,11 @@ require_once 'classes/post.class.php';
 
 class Flat{
 
-	private $config = array(
-		'blog_title' => 'Flat-Blog');
+	public static $config = array(
+		'blog_title' => 'Flat-Blog',
+		'post_date_format' => 'd/m/Y',
+		'post_time_format' => 'H:i',
+		'post_read_more' => 'Read More');
 
 	public function __construct(){
 		Post::setup();
@@ -22,7 +25,7 @@ class Flat{
 
 	// Blog
 	public function get_title(){
-		return $this->config['blog_title'];
+		return self::$config['blog_title'];
 	}
 
 }
