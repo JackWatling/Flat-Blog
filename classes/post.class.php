@@ -6,9 +6,13 @@ class Post{
 
 	//Configuration
 	private static $config = array(
-		'post_date_format' => 'd/m/Y',
+		'post_date_format' => 'd-m-Y',
 		'post_time_format' => 'H:i',
-		'post_read_more' => 'Read More');
+		'post_excerpt_length' => 200,
+		'post_read_more' => 'Read More',
+		'post_header_image' => true,
+		'post_header_image_full' => true,
+		'post_header_image_excerpt' => true);
 
 	//Static
 	public static function setup( $config ){
@@ -56,6 +60,7 @@ class Post{
 	private $time;
 	private $author;
 	private $content;
+	private $header_image;
 
 	public function __construct( $file ){
 		$data = json_decode( file_get_contents( $file ) );
@@ -65,6 +70,7 @@ class Post{
 		$this->time = $this->format_time( $data->time );
 		$this->author = $data->author;
 		$this->content = $data->content;
+		$this->header_image = isset( $data->header_image ) && self::$config['post_header_image'] ? $data->header_image : '';
 	}
 
 	//ID
@@ -79,6 +85,11 @@ class Post{
 	//Title
 	public function get_title(){
 		return $this->title;
+	}
+
+	//Header Image
+	public function get_header_image(){
+		return !empty( $this->header_image) && self::$config['post_header_image'] ? '<img src="' . $this->header_image . '">' : '';
 	}
 
 	//Date
@@ -114,7 +125,7 @@ class Post{
 	}
 
 	public function get_excerpt(){
-		return $this->replace_newlines( implode( ' ', array_slice( explode( ' ', strip_tags( $this->content ) ), 0, 200 ) ) . '...' );
+		return $this->replace_newlines( implode( ' ', array_slice( explode( ' ', strip_tags( $this->content ) ), 0, self::$config['post_excerpt_length'] ) ) . '...' );
 	}
 
 	//Output
@@ -128,6 +139,7 @@ class Post{
 			</header>
 
 			<section class="content">
+				' . (self::$config['post_header_image_full'] ? $this->get_header_image() : '') . '
 				' . $this->get_content() . '
 			</section>
 
@@ -149,6 +161,7 @@ class Post{
 			</header>
 
 			<section class="content">
+				' . (self::$config['post_header_image_excerpt'] ? $this->get_header_image() : '') . '
 				' . $this->get_excerpt() . '
 			</section>
 

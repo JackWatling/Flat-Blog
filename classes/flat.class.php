@@ -5,10 +5,8 @@ require_once 'classes/post.class.php';
 class Flat{
 
 	private $config = array(
-		'blog_title' => 'Flat-Blog',
-		'post_date_format' => 'd-m-Y',
-		'post_time_format' => 'H:i',
-		'post_read_more' => 'Read More');
+		'blog_title' => 'Flat-Blog'
+	);
 
 	public function __construct(){
 		Post::setup( $this->config );

@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8">
-	<title>Flat-Blog</title>
+	<title><?php echo $flat->get_title() . (( isset( $post ) ) ? ' - ' . $post->get_title() : '') ?></title>
 	<link rel="stylesheet" href="fonts/style.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
