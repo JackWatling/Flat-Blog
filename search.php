@@ -11,5 +11,10 @@ if ( !empty( $_GET['author'] ) ){
 	$posts = $flat->filter_by_author( $posts, $author );
 }
 
+if ( !empty( $_GET['date']  ) ){
+	$date = $_GET['date'];
+	$posts = $flat->filter_by_date( $posts, $date );
+}
+
 
 include 'views/search.tmpl.php';

@@ -31,6 +31,14 @@ class Flat{
 		return $posts;
 	}
 
+	public function filter_by_date( $posts, $date ){
+		foreach ($posts as $key => $post) {
+			if ( $post->get_date() !== $date )
+				unset( $posts[ $key ] );
+		}
+		return $posts;
+	}
+
 	// Blog
 	public function get_title(){
 		return $this->config['blog_title'];

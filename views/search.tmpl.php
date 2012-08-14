@@ -2,10 +2,20 @@
 
 <?php
 
-if ( !empty( $author ) ){
+if ( !empty( $author ) && !empty( $date) ){
+	echo 
+	'<section class="block">
+		<p>Displaying posts by <a href="search.php?author=' . $author  . '">' . $author . '</a> made on <a href="search.php?date=' . $date  . '">' . $date . '</a></p>
+	</section>';
+} else if ( !empty( $author ) ){
 	echo 
 	'<section class="block">
 		<p>Displaying posts by <a href="search.php?author=' . $author  . '">' . $author . '</a></p>
+	</section>';
+} else if ( !empty( $date) ) {
+	echo 
+	'<section class="block">
+		<p>Displaying posts made on <a href="search.php?date=' . $date  . '">' . $date . '</a></p>
 	</section>';
 } else {
 	echo '<section class="block">
