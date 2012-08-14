@@ -9,7 +9,7 @@
 <body>
 
 	<header class="main wrapper">
-		<h1><a href="index.php">Flat-Blog</a></h1>
+		<h1><a href="index.php"><?php echo $flat->get_title() ?></a></h1>
 		<nav>
 			<ul>
 				<li><a href="index.php">Home</a></li>

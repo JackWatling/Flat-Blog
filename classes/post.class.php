@@ -99,6 +99,48 @@ class Post{
 		return $this->replace_newlines( implode( ' ', array_slice( explode( ' ', strip_tags( $this->content ) ), 0, 200 ) ) . '...' );
 	}
 
+	//Output
+	public function display_full(){
+		return
+		'<article class="post block">
+
+			<header class="clear">
+				<h1><a href="#">' . $this->get_title() . '</a></h1>
+				<span class="info"><a href="#">' . $this->get_date() . ' @ ' . $this->get_time() . '</a> by <a href="#">' . $this->get_author() . '</a></span>
+			</header>
+
+			<section class="content">
+				' . $this->get_content() . '
+			</section>
+
+			<section class="meta clear">'
+				. $this->next_post()
+				. $this->prev_post() .
+			'</section>
+				
+		</article>';
+	}
+
+	public function display_excerpted(){
+		return
+		'<article class="post block">
+
+			<header class="clear">
+				<h1><a href="#">' . $this->get_title() . '</a></h1>
+				<span class="info"><a href="#">' . $this->get_date() . ' @ ' . $this->get_time() . '</a> by <a href="#">' . $this->get_author() . '</a></span>
+			</header>
+
+			<section class="content">
+				' . $this->get_excerpt() . '
+			</section>
+
+			<section class="meta clear">
+				<a href="' . $this->get_permalink() . '" class="right">Read More</a>
+			</section>
+			
+		</article>';
+	}
+
 	//Links
 	public function get_permalink(){
 		return 'post.php?id=' . $this->get_id();
