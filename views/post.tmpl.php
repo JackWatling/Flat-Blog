@@ -5,7 +5,8 @@
 if ( !empty( $post ) ){
 	echo $post->display_full();
 } else {
-	echo '<section class="error block">
+	echo
+	'<section class="block">
 		<p>No post found, did you provide a valid id?</p>
 	</section>';
 }

@@ -4,11 +4,29 @@ class Post{
 
 	public static $posts;
 
+	//Configuration
+	private static $config = array(
+		'post_date_format' => 'd/m/Y',
+		'post_time_format' => 'H:i',
+		'post_read_more' => 'Read More');
+
 	//Static
-	public static function setup(){
+	public static function setup( $config ){
+		self::configure( $config );
 		self::load();
 		self::sort();
 		self::ids();
+	}
+
+	private static function configure( $config ){
+		foreach (self::$config as $k => &$v) {
+			foreach ($config as $kk => &$vv) {
+				if ( $k === $kk ){
+					$v = $vv;
+					break;
+				}
+			}
+		}
 	}
 
 	private static function load(){
@@ -69,7 +87,7 @@ class Post{
 	}
 
 	private function format_date( $date ){
-		return date( Flat::$config['post_date_format'], strtotime( $date ) );
+		return date( self::$config['post_date_format'], strtotime( $date ) );
 	}
 
 	//Time
@@ -78,7 +96,7 @@ class Post{
 	}
 
 	private function format_time( $time ){
-		return date( Flat::$config['post_time_format'], strtotime( $time ) );
+		return date( self::$config['post_time_format'], strtotime( $time ) );
 	}
 
 	//Author
@@ -135,7 +153,7 @@ class Post{
 			</section>
 
 			<section class="meta clear">
-				<a href="' . $this->get_permalink() . '" class="right">' . Flat::$config['post_read_more'] . '</a>
+				<a href="' . $this->get_permalink() . '" class="right">' . self::$config['post_read_more'] . '</a>
 			</section>
 			
 		</article>';
