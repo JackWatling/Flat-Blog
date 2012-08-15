@@ -12,7 +12,8 @@ class Post{
 		'post_read_more' => 'Read More',
 		'post_header_image' => true,
 		'post_header_image_full' => true,
-		'post_header_image_excerpt' => true);
+		'post_header_image_excerpt' => true,
+		'post_category_display' => true);
 
 	//Static
 	public static function setup( $config ){
@@ -61,6 +62,7 @@ class Post{
 	private $author;
 	private $content;
 	private $header_image;
+	private $category;
 
 	public function __construct( $file ){
 		$data = json_decode( file_get_contents( $file ) );
@@ -71,6 +73,7 @@ class Post{
 		$this->author = $data->author;
 		$this->content = $data->content;
 		$this->header_image = isset( $data->header_image ) && self::$config['post_header_image'] ? $data->header_image : '';
+		$this->category = isset( $data->category ) ? $data->category : '';
 	}
 
 	//ID
@@ -90,6 +93,15 @@ class Post{
 	//Header Image
 	public function get_header_image(){
 		return !empty( $this->header_image) && self::$config['post_header_image'] ? '<img src="' . $this->header_image . '">' : '';
+	}
+
+	//Category
+	public function get_category(){
+		return !empty( $this->category) ? $this->category : '';
+	}
+
+	private function display_category(){
+		return self::$config['post_category_display'] && !empty( $this->category );
 	}
 
 	//Date
@@ -135,7 +147,7 @@ class Post{
 
 			<header class="clear">
 				<h1><a href="#">' . $this->get_title() . '</a></h1>
-				<span class="info"><a href="search.php?date=' . $this->get_date() . '">' . $this->get_date() . ' @ ' . $this->get_time() . '</a> by <a href="search.php?author=' . $this->get_author() . '">' . $this->get_author() . '</a></span>
+				<span class="info"><a href="search.php?date=' . $this->get_date() . '">' . $this->get_date() . ' @ ' . $this->get_time() . '</a> by <a href="search.php?author=' . $this->get_author() . '">' . $this->get_author() . '</a>' . ( $this->display_category() ? ' in <a href="search.php?category=' . $this->get_category() . '">' . $this->get_category() . '</a>' : '' ) . '</span>
 			</header>
 
 			<section class="content">
@@ -157,7 +169,7 @@ class Post{
 
 			<header class="clear">
 				<h1><a href="' . $this->get_permalink() . '">' . $this->get_title() . '</a></h1>
-				<span class="info"><a href="search.php?date=' . $this->get_date() . '">' . $this->get_date() . ' @ ' . $this->get_time() . '</a> by <a href="search.php?author=' . $this->get_author() . '">' . $this->get_author() . '</a></span>
+				<span class="info"><a href="search.php?date=' . $this->get_date() . '">' . $this->get_date() . ' @ ' . $this->get_time() . '</a> by <a href="search.php?author=' . $this->get_author() . '">' . $this->get_author() . '</a>' . ( $this->display_category() ? ' in <a href="search.php?category=' . $this->get_category() . '">' . $this->get_category() . '</a>' : '' ) . '</span>
 			</header>
 
 			<section class="content">

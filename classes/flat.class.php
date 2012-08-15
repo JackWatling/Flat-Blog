@@ -37,6 +37,14 @@ class Flat{
 		return $posts;
 	}
 
+	public function filter_by_category( $posts, $category ){
+		foreach ($posts as $key => $post) {
+			if ( strtolower( $post->get_category() ) !== strtolower( $category ) )
+				unset( $posts[ $key ] );
+		}
+		return $posts;
+	}
+
 	// Blog
 	public function get_title(){
 		return $this->config['blog_title'];

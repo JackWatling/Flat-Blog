@@ -16,5 +16,10 @@ if ( !empty( $_GET['date']  ) ){
 	$posts = $flat->filter_by_date( $posts, $date );
 }
 
+if ( !empty( $_GET['category']  ) ){
+	$category = $_GET['category'];
+	$posts = $flat->filter_by_category( $posts, $category );
+}
+
 
 include 'views/search.tmpl.php';

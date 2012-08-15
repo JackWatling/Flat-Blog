@@ -1,27 +1,23 @@
 <?php include '_partials/header.php'; ?>
 
-<?php
+<section class="block">
+	<?php
 
-if ( !empty( $author ) && !empty( $date) ){
-	echo 
-	'<section class="block">
-		<p>Displaying posts by <a href="search.php?author=' . $author  . '">' . $author . '</a> made on <a href="search.php?date=' . $date  . '">' . $date . '</a></p>
-	</section>';
-} else if ( !empty( $author ) ){
-	echo 
-	'<section class="block">
-		<p>Displaying posts by <a href="search.php?author=' . $author  . '">' . $author . '</a></p>
-	</section>';
-} else if ( !empty( $date) ) {
-	echo 
-	'<section class="block">
-		<p>Displaying posts made on <a href="search.php?date=' . $date  . '">' . $date . '</a></p>
-	</section>';
-} else {
-	echo '<section class="block">
-		<p>No filter specified, showing all posts. Return to <a href="index.php">home page</a>?</p>
-	</section>';
-}
+	if ( !empty( $author ) || !empty( $date ) || !empty( $category ) ){
+		echo 
+		'<p>Displaying posts published
+			' . ( !empty( $author ) ? 'by <a href="search.php?author=' . $author  . '">' . $author . '</a>' : '' ) . '
+			' . ( !empty( $category ) ? 'in the category <a href="search.php?category=' . $category  . '">' . $category . '</a>' : '' ) . '
+			' . ( !empty( $date ) ? 'on the <a href="search.php?date=' . $date  . '">' . $date . '</a>' : '' ) . '
+		</p>';
+	} else {
+		echo '<p>No filter specified, showing all posts. Return to <a href="index.php">home page</a>?</p>';
+	}
+
+	?>
+</section>
+
+<?php
 
 if( !empty( $posts ) ){
 	foreach ($posts as $key => $post) {
