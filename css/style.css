@@ -197,3 +197,13 @@ article.post section.meta a:hover{
 	color: #00bdf4;
 	border: none;
 }
+
+/*Pagination - Navigation*/
+nav.pagination a{
+	font-size: 0.875em;
+	color: #a2a2a2;
+}
+
+nav.pagination a:hover{
+	color: #00bdf4;
+}

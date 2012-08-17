@@ -21,5 +21,4 @@ if ( !empty( $_GET['category']  ) ){
 	$posts = $flat->filter_by_category( $posts, $category );
 }
 
-
 include 'views/search.tmpl.php';

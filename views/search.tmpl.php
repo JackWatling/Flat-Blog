@@ -13,7 +13,6 @@
 	} else {
 		echo '<p>No filter specified, showing all posts. Return to <a href="index.php">home page</a>?</p>';
 	}
-
 	?>
 </section>
 

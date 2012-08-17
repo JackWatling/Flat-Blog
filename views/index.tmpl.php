@@ -6,6 +6,7 @@ if( !empty( $posts ) ){
 	foreach ($posts as $key => $post) {
 		echo $post->display_excerpted();
 	}
+	echo $flat->page_navigation();
 } else {
 	echo 
 	'<section class="error block">
