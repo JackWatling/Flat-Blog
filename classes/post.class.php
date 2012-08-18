@@ -6,11 +6,13 @@ class Post{
 
 	//Configuration
 	private static $config = array(
+		'post_directory' => 'posts',
 		'post_date_format' => 'd-m-Y',
 		'post_time_format' => 'H:i',
 		'post_excerpt_length' => 200,
 		'post_read_more' => 'Read More',
 		'post_header_image' => true,
+		'post_header_image_directory' => 'images',
 		'post_header_image_full' => true,
 		'post_header_image_excerpt' => true,
 		'post_category_display' => true);
@@ -35,7 +37,7 @@ class Post{
 	}
 
 	private static function load(){
-		Post::$posts = glob( 'posts/*.txt' );
+		Post::$posts = glob( self::$config['post_directory'] . '/*.txt' );
 		foreach (Post::$posts as $key => &$file) {
 			$file = new Post( $file );
 		}
@@ -72,7 +74,7 @@ class Post{
 		$this->time = $this->format_time( $data->time );
 		$this->author = $data->author;
 		$this->content = $data->content;
-		$this->header_image = isset( $data->header_image ) && self::$config['post_header_image'] ? $data->header_image : '';
+		$this->header_image = isset( $data->header_image ) && self::$config['post_header_image'] ? file_exists( self::$config['post_header_image_directory'] . '/' . $data->header_image ) ? self::$config['post_header_image_directory'] . '/' . $data->header_image : '' : '';
 		$this->category = isset( $data->category ) ? $data->category : '';
 	}
 

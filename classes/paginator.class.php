@@ -50,7 +50,7 @@ class Paginator{
 
 	public static function page_navigation(){
 		return
-		self::$config['paginator_enabled']
+		self::$config['paginator_enabled'] && self::$page_posts_total > self::$config['paginator_posts_per_page']
 			? '<nav class="pagination block clear">'
 				. self::next_page()
 				. self::prev_page() . '
