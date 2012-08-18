@@ -10,7 +10,8 @@ class Flat{
 	);
 
 	public function __construct(){
-		Post::setup( $this->config );
+		Paginator::setup( $this->config );
+		Post::setup( $this->config );		
 	}
 
 	// Posts
@@ -48,8 +49,8 @@ class Flat{
 	}
 
 	//Pagination
-	public function paginate( $posts, $url, $page ){
-		return Paginator::paginate( $posts, $url, $page );
+	public function paginate( $posts, $page ){
+		return Paginator::paginate( $posts, $_SERVER['REQUEST_URI'], $page );
 	}
 
 	public function next_page(){

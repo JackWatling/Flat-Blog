@@ -21,4 +21,6 @@ if ( !empty( $_GET['category']  ) ){
 	$posts = $flat->filter_by_category( $posts, $category );
 }
 
+$posts = $flat->paginate( $posts, isset( $_GET['page'] ) ? $_GET['page'] : 1 );
+
 include 'views/search.tmpl.php';

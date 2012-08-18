@@ -9,7 +9,7 @@ if( !empty( $posts ) ){
 	echo $flat->page_navigation();
 } else {
 	echo 
-	'<section class="error block">
+	'<section class="block">
 		<p>No posts found.</p>
 	</section>';
 }
