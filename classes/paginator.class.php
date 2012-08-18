@@ -8,7 +8,7 @@ class Paginator{
 
 	public static $config = array(
 		'paginator_enabled' => true,
-		'paginator_posts_per_page' => 1
+		'paginator_posts_per_page' => 10
 	);
 
 	public static function setup( $config ){

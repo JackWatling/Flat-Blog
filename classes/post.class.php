@@ -6,15 +6,27 @@ class Post{
 
 	//Configuration
 	private static $config = array(
+		//General
 		'post_directory' => 'posts',
+
+		//Date and Time
 		'post_date_format' => 'd-m-Y',
 		'post_time_format' => 'H:i',
 		'post_excerpt_length' => 200,
+
+		//Navigation
 		'post_read_more' => 'Read More',
+		'post_nav_enabled' => true,
+		'post_nav_next' => 'Next',
+		'post_nav_prev' => 'Previous',
+
+		//Header Images
 		'post_header_image' => true,
 		'post_header_image_directory' => 'images',
 		'post_header_image_full' => true,
 		'post_header_image_excerpt' => true,
+
+		//Catgories
 		'post_category_display' => true);
 
 	//Static
@@ -157,12 +169,13 @@ class Post{
 				' . $this->get_content() . '
 			</section>
 
-			<section class="meta clear">'
-				. $this->next_post()
-				. $this->prev_post() .
-			'</section>
-				
-		</article>';
+			' . (self::$config['post_nav_enabled']
+				? '<section class="meta clear">'
+					. $this->next_post()
+					. $this->prev_post() .
+				'</section>'
+				: '' ) .				
+		'</article>';
 	}
 
 	public function display_excerpted(){
@@ -192,12 +205,21 @@ class Post{
 	}
 
 	//Navigation
-	public function next_post(){
-		return $this->get_id() + 1 <= count( Post::$posts ) ? '<a class="right" href="post.php?id=' . ($this->get_id() + 1) . '">Next</a>' : '';
+	public function next_post( $link = false ){
+		return $this->get_id() + 1 <= count( self::$posts ) ? '<a class="right" href="post.php?id=' . ($this->get_id() + 1) . '">' . $this->link_tags( !$link ? self::$config['post_nav_next'] : $link , $this->get_id() + 1 ) . '</a>' : '';
 	}
 
-	public function prev_post(){
-		return $this->get_id() - 1 > 0 ? '<a class="left" href="post.php?id=' . ($this->get_id() - 1) . '">Prev</a>' : '';
+	public function prev_post( $link = false ){
+		return $this->get_id() - 1 > 0 ? '<a class="left" href="post.php?id=' . ($this->get_id() - 1) . '">' . $this->link_tags( !$link ? self::$config['post_nav_prev'] : $link , $this->get_id() - 1 ) . '</a>' : '';
+	}
+
+	private function link_tags( $link, $id ){
+		$relative_post =  self::$posts[ count( self::$posts ) - $id ];
+		$link = str_replace( '%title%' , $relative_post->get_title(), $link );
+		$link = str_replace( '%date%' , $relative_post->get_date(), $link );
+		$link = str_replace( '%author%' , $relative_post->get_author(), $link );
+		$link = str_replace( '%category%' , $relative_post->get_category(), $link );
+		return $link;
 	}
 
 }

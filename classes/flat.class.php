@@ -5,13 +5,13 @@ require_once 'classes/paginator.class.php';
 
 class Flat{
 
-	private $config = array(
+	private static $config = array(
 		'blog_title' => 'Flat-Blog'
 	);
 
 	public function __construct(){
-		Paginator::setup( $this->config );
-		Post::setup( $this->config );		
+		Paginator::setup( self::$config );
+		Post::setup( self::$config );		
 	}
 
 	// Posts
@@ -53,6 +53,10 @@ class Flat{
 		return Paginator::paginate( $posts, $_SERVER['REQUEST_URI'], $page );
 	}
 
+	public function posts_per_page(){
+		return Paginator::$config['paginator_posts_per_page'];
+	}
+
 	public function next_page(){
 		return Paginator::next_page();
 	}
@@ -67,7 +71,7 @@ class Flat{
 
 	// Blog
 	public function get_title(){
-		return $this->config['blog_title'];
+		return self::$config['blog_title'];
 	}
 
 }
