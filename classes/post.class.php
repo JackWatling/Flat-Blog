@@ -12,6 +12,7 @@ class Post{
 		//Date and Time
 		'post_date_format' => 'd-m-Y',
 		'post_time_format' => 'H:i',
+		'post_date_time_connector' => '@',
 		'post_excerpt_length' => 200,
 
 		//Navigation
@@ -27,7 +28,7 @@ class Post{
 		'post_header_image_excerpt' => true,
 
 		//Catgories
-		'post_category_display' => true);
+		'post_category_display' => false);
 
 	//Static
 	public static function setup( $config ){
@@ -127,6 +128,10 @@ class Post{
 		return date( self::$config['post_date_format'], strtotime( $date ) );
 	}
 
+	public function get_date_time_connector(){
+		return self::$config['post_date_time_connector'];
+	} 
+
 	//Time
 	public function get_time(){
 		return $this->time;
@@ -161,7 +166,7 @@ class Post{
 
 			<header class="clear">
 				<h1><a href="#">' . $this->get_title() . '</a></h1>
-				<span class="info"><a href="search.php?date=' . $this->get_date() . '">' . $this->get_date() . ' @ ' . $this->get_time() . '</a> by <a href="search.php?author=' . $this->get_author() . '">' . $this->get_author() . '</a>' . ( $this->display_category() ? ' in <a href="search.php?category=' . $this->get_category() . '">' . $this->get_category() . '</a>' : '' ) . '</span>
+				<span class="info"><a href="search.php?date=' . $this->get_date() . '">' . $this->get_date() . ' ' . $this->get_date_time_connector() .' ' .  $this->get_time() . '</a> by <a href="search.php?author=' . $this->get_author() . '">' . $this->get_author() . '</a>' . ( $this->display_category() ? ' in <a href="search.php?category=' . $this->get_category() . '">' . $this->get_category() . '</a>' : '' ) . '</span>
 			</header>
 
 			<section class="content">
@@ -184,7 +189,7 @@ class Post{
 
 			<header class="clear">
 				<h1><a href="' . $this->get_permalink() . '">' . $this->get_title() . '</a></h1>
-				<span class="info"><a href="search.php?date=' . $this->get_date() . '">' . $this->get_date() . ' @ ' . $this->get_time() . '</a> by <a href="search.php?author=' . $this->get_author() . '">' . $this->get_author() . '</a>' . ( $this->display_category() ? ' in <a href="search.php?category=' . $this->get_category() . '">' . $this->get_category() . '</a>' : '' ) . '</span>
+				<span class="info"><a href="search.php?date=' . $this->get_date() . '">' . $this->get_date() . ' ' . $this->get_date_time_connector() .' ' . $this->get_time() . '</a> by <a href="search.php?author=' . $this->get_author() . '">' . $this->get_author() . '</a>' . ( $this->display_category() ? ' in <a href="search.php?category=' . $this->get_category() . '">' . $this->get_category() . '</a>' : '' ) . '</span>
 			</header>
 
 			<section class="content">

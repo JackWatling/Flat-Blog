@@ -207,3 +207,20 @@ nav.pagination a{
 nav.pagination a:hover{
 	color: #00bdf4;
 }
+
+/*Footer*/
+footer.main{
+	font-family: 'RobotoLight';
+	font-size: 0.8em;
+	color: #919191;
+	text-align: center;
+}
+
+footer.main a{
+	color: #919191;
+	text-decoration: none;
+}
+
+footer.main a:hover{
+	color: #00bdf4;
+}
