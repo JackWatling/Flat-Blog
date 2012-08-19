@@ -9,6 +9,9 @@ class Post{
 		//General
 		'post_directory' => 'posts',
 
+		//Sticky Posts
+		'post_sticky_enabled' => true,
+
 		//Date and Time
 		'post_date_format' => 'd-m-Y',
 		'post_time_format' => 'H:i',
@@ -69,6 +72,24 @@ class Post{
 		}
 	}
 
+	public static function get_posts( $is_query = false ){
+		if ( !self::$config['post_sticky_enabled'] || $is_query )
+			return Post::$posts;
+		return array_merge( self::get_posts_sticky(), self::get_posts_non_sticky() );
+	}
+
+	public static function get_posts_sticky(){
+		return array_filter( Post::$posts, function( $post ){
+			return $post->is_stuck();
+		});
+	}
+
+	public static function get_posts_non_sticky(){
+		return array_filter( Post::$posts, function( $post ){
+			return !$post->is_stuck();
+		});
+	}
+
 	//Dynamic
 	private $id;
 	private $title;
@@ -78,6 +99,7 @@ class Post{
 	private $content;
 	private $header_image;
 	private $category;
+	private $sticky;
 
 	public function __construct( $file ){
 		$data = json_decode( file_get_contents( $file ) );
@@ -89,6 +111,12 @@ class Post{
 		$this->content = $data->content;
 		$this->header_image = isset( $data->header_image ) && self::$config['post_header_image'] ? file_exists( self::$config['post_header_image_directory'] . '/' . $data->header_image ) ? self::$config['post_header_image_directory'] . '/' . $data->header_image : '' : '';
 		$this->category = isset( $data->category ) ? $data->category : '';
+		$this->sticky = isset( $data->sticky ) ? $data->sticky : false;
+	}
+
+	//Sticky
+	public function is_stuck(){
+		return $this->sticky;
 	}
 
 	//ID

@@ -15,8 +15,8 @@ class Flat{
 	}
 
 	// Posts
-	public function get_posts(){
-		return Post::$posts;
+	public function get_posts( $is_query = false ){
+		return Post::get_posts( $is_query );
 	}
 
 	public function get_post_by_id( $id ){

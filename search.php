@@ -4,7 +4,7 @@ require_once 'classes/flat.class.php';
 
 $flat = new Flat();
 
-$posts = $flat->get_posts();
+$posts = $flat->get_posts( true );
 
 if ( !empty( $_GET['author'] ) ){
 	$author = $_GET['author'];
