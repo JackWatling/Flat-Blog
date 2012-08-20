@@ -3,7 +3,7 @@
 <?php
 
 if ( !empty( $post ) ){
-	echo $post->display_full();
+	echo $post;
 } else {
 	echo
 	'<section class="block">

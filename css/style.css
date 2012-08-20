@@ -176,7 +176,7 @@ article.post section.content p{
 
 /*Post - Images*/
 article.post section.content img{
-	max-width: 920px;
+	max-width: 100%;
 	display: block;
 	margin: 10px auto;
 }

@@ -31,7 +31,10 @@ class Post{
 		'post_header_image_excerpt' => true,
 
 		//Catgories
-		'post_category_display' => false);
+		'post_category_display' => false,
+
+		//View
+		'post_grid_view' => true);
 
 	//Static
 	public static function setup( $config ){
@@ -253,6 +256,10 @@ class Post{
 		$link = str_replace( '%author%' , $relative_post->get_author(), $link );
 		$link = str_replace( '%category%' , $relative_post->get_category(), $link );
 		return $link;
+	}
+
+	public function __toString(){
+		return $this->display_full();
 	}
 
 }
