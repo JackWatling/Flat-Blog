@@ -174,10 +174,31 @@ article.post section.content p{
 	line-height: 1.35em;
 }
 
+/*Post - Images*/
 article.post section.content img{
 	max-width: 920px;
 	display: block;
-	margin: 10px 0;
+	margin: 10px auto;
+}
+
+article.post section.content img.left,
+article.post section.content img.right{
+	width: 50%;
+	display: block;
+}
+
+article.post section.content img.left{
+	margin: 0 10px 0 0;
+	float: left;
+}
+
+article.post section.content img.right{
+	margin: 0 0 0 10px;
+	float: right;
+}
+
+article.post section.content img.small{
+	width: 25%;
 }
 
 /*Post - Meta*/
