@@ -11,19 +11,13 @@ class Paginator{
 		'paginator_posts_per_page' => 10
 	);
 
-	public static function setup( $config ){
-		self::configure( $config );
+	//Setup
+	public static function setup(){
+		self::configure();
 	}
 
-	private static function configure( $config ){
-		foreach (self::$config as $k => &$v) {
-			foreach ($config as $kk => &$vv) {
-				if ( $k === $kk ){
-					$v = $vv;
-					break;
-				}
-			}
-		}
+	public static function configure(){
+		self::$config = Configuration::update( self::$config );
 	}
 
 	public static function paginate( $posts, $url, $page ){

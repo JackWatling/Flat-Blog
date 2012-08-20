@@ -37,22 +37,15 @@ class Post{
 		'post_grid_view' => true);
 
 	//Static
-	public static function setup( $config ){
-		self::configure( $config );
+	public static function setup(){
+		self::configure();
 		self::load();
 		self::sort();
 		self::ids();
 	}
 
-	private static function configure( $config ){
-		foreach (self::$config as $k => &$v) {
-			foreach ($config as $kk => &$vv) {
-				if ( $k === $kk ){
-					$v = $vv;
-					break;
-				}
-			}
-		}
+	public static function configure(){
+		self::$config = Configuration::update( self::$config );
 	}
 
 	private static function load(){

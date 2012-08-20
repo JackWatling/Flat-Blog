@@ -2,6 +2,7 @@
 
 require_once 'classes/post.class.php';
 require_once 'classes/paginator.class.php';
+require_once 'classes/configuration.class.php';
 
 class Flat{
 
@@ -10,8 +11,18 @@ class Flat{
 	);
 
 	public function __construct(){
-		Paginator::setup( self::$config );
-		Post::setup( self::$config );		
+		$this->setup();
+		Paginator::setup();		
+		Post::setup();		
+	}
+
+	//Setup
+	public function setup(){
+		$this->configure();
+	}
+
+	public function configure(){
+		self::$config = Configuration::update( self::$config );
 	}
 
 	// Posts
