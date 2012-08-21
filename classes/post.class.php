@@ -25,16 +25,13 @@ class Post{
 		'post_nav_prev' => 'Previous',
 
 		//Header Images
-		'post_header_image' => true,
+		'post_header_image_enabled' => true,
 		'post_header_image_directory' => 'images',
 		'post_header_image_full' => true,
 		'post_header_image_excerpt' => true,
 
 		//Catgories
-		'post_category_display' => false,
-
-		//View
-		'post_grid_view' => true);
+		'post_category_display' => false);
 
 	//Static
 	public static function setup(){
@@ -105,7 +102,7 @@ class Post{
 		$this->time = $this->format_time( $data->time );
 		$this->author = $data->author;
 		$this->content = $data->content;
-		$this->header_image = isset( $data->header_image ) && self::$config['post_header_image'] ? file_exists( self::$config['post_header_image_directory'] . '/' . $data->header_image ) ? self::$config['post_header_image_directory'] . '/' . $data->header_image : '' : '';
+		$this->header_image = isset( $data->header_image ) && self::$config['post_header_image_enabled'] ? file_exists( self::$config['post_header_image_directory'] . '/' . $data->header_image ) ? self::$config['post_header_image_directory'] . '/' . $data->header_image : '' : '';
 		$this->category = isset( $data->category ) ? $data->category : '';
 		$this->sticky = isset( $data->sticky ) ? $data->sticky : false;
 	}
@@ -131,7 +128,7 @@ class Post{
 
 	//Header Image
 	public function get_header_image(){
-		return !empty( $this->header_image) && self::$config['post_header_image'] ? '<img src="' . $this->header_image . '">' : '';
+		return !empty( $this->header_image) && self::$config['post_header_image_enabled'] ? '<img src="' . $this->header_image . '">' : '';
 	}
 
 	//Category
